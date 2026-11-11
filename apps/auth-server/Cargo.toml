@@ -1,0 +1,9 @@
+[package]
+name = "auth-server"
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+tokio = { workspace = true, features = ["full"] }
+domain.workspace = true
+tracing.workspace = true

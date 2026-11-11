@@ -1,0 +1,19 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug auth-server",
+      "cargo": { "args": ["build", "--bin", "auth-server", "--package", "auth-server"] },
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Debug unit tests (domain)",
+      "cargo": { "args": ["test", "--no-run", "--package", "domain"] },
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

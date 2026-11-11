@@ -1,0 +1,13 @@
+[package]
+name = "domain"
+edition.workspace = true
+version.workspace = true
+
+[dependencies]
+dotenvy.workspace = true
+thiserror.workspace = true
+tracing.workspace = true
+tracing-subscriber = { workspace = true, features = ["env-filter"] }
+
+[dev-dependencies]
+common-tests.workspace = true
