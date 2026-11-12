@@ -11,8 +11,8 @@
     {
       "type": "lldb",
       "request": "launch",
-      "name": "Debug unit tests (domain)",
-      "cargo": { "args": ["test", "--no-run", "--package", "domain"] },
+      "name": "Debug unit tests (infraestructure)",
+      "cargo": { "args": ["test", "--no-run", "--package", "infraestructure"] },
       "cwd": "${workspaceFolder}"
     }
   ]

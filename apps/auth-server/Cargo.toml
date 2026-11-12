@@ -5,5 +5,5 @@ version.workspace = true
 
 [dependencies]
 tokio = { workspace = true, features = ["full"] }
-domain.workspace = true
+infraestructure.workspace = true
 tracing.workspace = true

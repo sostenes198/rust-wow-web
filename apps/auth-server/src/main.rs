@@ -1,4 +1,4 @@
-use domain::{AppConfig, Logging};
+use infraestructure::{AppConfig, Logging};
 use std::net::SocketAddr;
 use tokio::net::{TcpListener, TcpStream};
 use tracing::{error, info};
@@ -13,10 +13,10 @@ async fn main() {
         }
     };
 
-    Logging::initialize(&config.log_level).map_err(|e| {
+    if let Err(e) = Logging::initialize(&config.log_level) {
         eprint!("Failed to initialize log: {e}");
         std::process::exit(1);
-    });
+    }
 
     let addr = config.auth_addr();
 
@@ -42,7 +42,7 @@ async fn main() {
     }
 }
 
-fn handle_connection(socket: TcpStream, peer: SocketAddr) {
+async fn handle_connection(socket: TcpStream, peer: SocketAddr) {
     info!(%peer, "client connected");
     drop(socket);
     info!(%peer, "client desconected");

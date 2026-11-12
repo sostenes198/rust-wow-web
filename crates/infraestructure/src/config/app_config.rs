@@ -113,15 +113,16 @@ mod tests {
 
     #[test]
     fn required_return_the_value_when_present() {
-        unsafe {
-            env::set_var("CFG_TEST_REQUIRED_OK", "abc");
-        }
+        let env = EnvGuard::new(&["CFG_TEST_REQUIRED_OK"]);
+        env.set("CFG_TEST_REQUIRED_OK", "abc");
 
         assert_eq!(AppConfig::required("CFG_TEST_REQUIRED_OK").unwrap(), "abc");
     }
 
     #[test]
     fn required_fails_with_missing_when_absent() {
+        let _env = EnvGuard::new(&["CFG_TEST_REQUIRED_ABSENT"]);
+
         let error = AppConfig::required("CFG_TEST_REQUIRED_ABSENT").unwrap_err();
 
         assert_eq!(
@@ -136,8 +137,8 @@ mod tests {
         use std::os::unix::ffi::OsStringExt;
 
         let not_utf8 = OsString::from_vec(vec![0xff, 0xfe]);
-        // SAFETY: unique name, no other test reads or writes it.
-        unsafe { env::set_var("CFG_TEST_REQUIRED_BINARY", not_utf8) };
+        let env = EnvGuard::new(&["CFG_TEST_REQUIRED_BINARY"]);
+        env.set("CFG_TEST_REQUIRED_BINARY", not_utf8);
 
         let error = AppConfig::required("CFG_TEST_REQUIRED_BINARY").unwrap_err();
 
@@ -152,9 +153,8 @@ mod tests {
 
     #[test]
     fn with_default_value_prefers_the_enviroment() {
-        unsafe {
-            env::set_var("CFG_TEST_DEFAULT_SET", "from-env");
-        }
+        let env = EnvGuard::new(&["CFG_TEST_DEFAULT_SET"]);
+        env.set("CFG_TEST_DEFAULT_SET", "from-env");
 
         assert_eq!(
             AppConfig::with_default_value("CFG_TEST_DEFAULT_SET", "fallback"),
@@ -164,6 +164,7 @@ mod tests {
 
     #[test]
     fn with_default_value_falls_back_when_absent() {
+        let _env = EnvGuard::new(&["CFG_TEST_DEFAULT_ABSENT"]);
         assert_eq!(
             AppConfig::with_default_value("CFG_TEST_DEFAULT_ABSENT", "fallback"),
             "fallback"

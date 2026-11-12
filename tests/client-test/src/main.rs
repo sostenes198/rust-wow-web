@@ -1,6 +1,6 @@
 use std::time::Duration;
 
-use domain::{AppConfig, Logging};
+use infraestructure::{AppConfig, Logging};
 use tokio::{net::TcpStream, time::sleep};
 use tracing::{error, info};
 
@@ -14,13 +14,13 @@ async fn main() {
         }
     };
 
-    Logging::initialize(&config.log_level).map_err(|e| {
+    if let Err(e) = Logging::initialize(&config.log_level) {
         eprint!("Failed to initialize log: {e}");
         std::process::exit(1);
-    });
+    }
 
     let addr = config.auth_addr();
-    info!("connected in {addr}");
+    info!("connected to {addr}");
 
     match TcpStream::connect(&addr).await {
         Ok(stream) => {

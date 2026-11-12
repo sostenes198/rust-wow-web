@@ -1,5 +1,6 @@
 use std::{
     env,
+    ffi::OsStr,
     path::PathBuf,
     sync::{Mutex, MutexGuard, PoisonError},
 };
@@ -29,7 +30,7 @@ impl EnvGuard {
         guard
     }
 
-    pub fn set(&self, name: &str, value: &str) {
+    pub fn set(&self, name: &str, value: impl AsRef<OsStr>) {
         unsafe {
             env::set_var(name, value);
         }

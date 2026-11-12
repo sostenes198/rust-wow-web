@@ -15,7 +15,7 @@ dependencies = [
 name = "auth-server"
 version = "0.1.0"
 dependencies = [
- "domain",
+ "infraestructure",
  "tokio",
  "tracing",
 ]
@@ -42,7 +42,7 @@ checksum = "4e7648175b45a9a48536d676f68d918270699102aa8dab5496df06904c914600"
 name = "client-test"
 version = "0.1.0"
 dependencies = [
- "domain",
+ "infraestructure",
  "tokio",
  "tracing",
 ]
@@ -51,17 +51,6 @@ dependencies = [
 name = "common-tests"
 version = "0.1.0"
 dependencies = [
- "tracing",
- "tracing-subscriber",
-]
-
-[[package]]
-name = "domain"
-version = "0.1.0"
-dependencies = [
- "common-tests",
- "dotenvy",
- "thiserror",
  "tracing",
  "tracing-subscriber",
 ]
@@ -84,6 +73,17 @@ checksum = "39cab71617ae0d63f51a36d69f866391735b51691dbda63cf6f96d042b63efeb"
 dependencies = [
  "libc",
  "windows-sys",
+]
+
+[[package]]
+name = "infraestructure"
+version = "0.1.0"
+dependencies = [
+ "common-tests",
+ "dotenvy",
+ "thiserror",
+ "tracing",
+ "tracing-subscriber",
 ]
 
 [[package]]
