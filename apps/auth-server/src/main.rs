@@ -34,7 +34,7 @@ async fn main() {
         match listener.accept().await {
             Ok((socket, peer)) => {
                 tokio::spawn(async move {
-                    handle_connection(socket, peer);
+                    handle_connection(socket, peer).await;
                 });
             }
             Err(e) => error!("Failed to accept connection: {e}"),

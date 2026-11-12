@@ -33,6 +33,7 @@ cargo check --workspace             # verifica erros sem gerar binário (mais r�
 
 ```sh
 cargo test --workspace              # roda todos os testes
+cargo test-unit                     # só os unitários (crates em crates/), alias de .cargo/config.toml
 cargo test -p infraestructure       # testes de um pacote
 cargo test nome_do_teste            # testes filtrados por nome
 cargo test -- --nocapture           # mostra a saída (println!) dos testes
