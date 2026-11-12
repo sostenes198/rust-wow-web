@@ -1,0 +1,9 @@
+[package]
+name = "client-test"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+domain.workspace = true
+tokio = { workspace = true, features = ["full"] }
+tracing.workspace = true
