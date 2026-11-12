@@ -14,7 +14,7 @@ async fn main() {
     };
 
     if let Err(e) = Logging::initialize(&config.log_level) {
-        eprint!("Failed to initialize log: {e}");
+        eprintln!("Failed to initialize log: {e}");
         std::process::exit(1);
     }
 
