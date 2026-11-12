@@ -4,6 +4,6 @@ version.workspace = true
 edition.workspace = true
 
 [dependencies]
-infraestructure.workspace = true
+infrastructure.workspace = true
 tokio = { workspace = true, features = ["full"] }
 tracing.workspace = true

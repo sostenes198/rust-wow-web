@@ -1,6 +1,6 @@
 use std::time::Duration;
 
-use infraestructure::{AppConfig, Logging};
+use infrastructure::{AppConfig, Logging};
 use tokio::{net::TcpStream, time::sleep};
 use tracing::{error, info};
 
@@ -27,7 +27,7 @@ async fn main() {
             info!("connected");
             sleep(Duration::from_secs(1)).await;
             drop(stream);
-            info!("disconected");
+            info!("disconnected");
         }
         Err(e) => {
             error!("Could not connect in {addr}: {e}");

@@ -1,4 +1,4 @@
-use infraestructure::{AppConfig, Logging};
+use infrastructure::{AppConfig, Logging};
 use std::net::SocketAddr;
 use tokio::net::{TcpListener, TcpStream};
 use tracing::{error, info};
@@ -28,7 +28,7 @@ async fn main() {
         }
     };
 
-    info!("auth-server listening in {addr}");
+    info!("auth-server listening on {addr}");
 
     loop {
         match listener.accept().await {
@@ -45,5 +45,5 @@ async fn main() {
 async fn handle_connection(socket: TcpStream, peer: SocketAddr) {
     info!(%peer, "client connected");
     drop(socket);
-    info!(%peer, "client disconected");
+    info!(%peer, "client disconnected");
 }

@@ -85,8 +85,8 @@ mod tests {
     #[test]
     fn build_filter_keeps_per_target_directives() {
         assert_eq!(
-            filter("warn,infraestructure=trace").to_string(),
-            "infraestructure=trace,warn"
+            filter("warn,infrastructure=trace").to_string(),
+            "infrastructure=trace,warn"
         );
     }
 
@@ -104,7 +104,7 @@ mod tests {
 
     #[test]
     fn build_filter_rejects_a_malformed_target_directive() {
-        assert_invalid("info,infraestructure=bar");
+        assert_invalid("info,infrastructure=bar");
     }
 
     #[test]

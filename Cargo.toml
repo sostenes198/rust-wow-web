@@ -7,7 +7,7 @@ resolver = "2"
 members = ["crates/*", "apps/*", "tests/*"]
 
 [workspace.dependencies]
-infraestructure = { path = "crates/infraestructure" }
+infrastructure = { path = "crates/infrastructure" }
 common-tests = { path = "tests/common" }
 dotenvy = "0.15.7"
 thiserror = "2.0.21"

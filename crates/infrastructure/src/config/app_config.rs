@@ -49,8 +49,8 @@ impl AppConfig {
         }
     }
 
-    fn with_default_value(name: &'static str, defaulf: &str) -> String {
-        env::var(name).unwrap_or_else(|_| defaulf.to_string())
+    fn with_default_value(name: &'static str, default_value: &str) -> String {
+        env::var(name).unwrap_or_else(|_| default_value.to_string())
     }
 
     fn parse_to_u16(name: &'static str, value: &str) -> Result<u16, ConfigError> {
@@ -257,7 +257,7 @@ mod tests {
     }
 
     #[test]
-    fn load_fails_when_word_host_is_missing() {
+    fn load_fails_when_world_host_is_missing() {
         let env = EnvGuard::new(&VARS);
         env.set("AUTH_HOST", "1.1.1.1");
 
