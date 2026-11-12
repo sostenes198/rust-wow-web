@@ -127,7 +127,7 @@ mod tests {
 
         assert_eq!(
             error.to_string(),
-            "enviroment variable required is missing: CFG_TEST_REQUIRED_ABSENT"
+            "environment variable required is missing: CFG_TEST_REQUIRED_ABSENT"
         );
     }
 
@@ -152,7 +152,7 @@ mod tests {
     // ---------- with_default_value ----------
 
     #[test]
-    fn with_default_value_prefers_the_enviroment() {
+    fn with_default_value_prefers_the_environment() {
         let env = EnvGuard::new(&["CFG_TEST_DEFAULT_SET"]);
         env.set("CFG_TEST_DEFAULT_SET", "from-env");
 
@@ -241,7 +241,7 @@ mod tests {
 
         assert_eq!(
             error.to_string(),
-            "enviroment variable required is missing: AUTH_HOST"
+            "environment variable required is missing: AUTH_HOST"
         );
     }
 
@@ -265,7 +265,7 @@ mod tests {
 
         assert_eq!(
             error.to_string(),
-            "enviroment variable required is missing: WORLD_HOST"
+            "environment variable required is missing: WORLD_HOST"
         );
     }
 

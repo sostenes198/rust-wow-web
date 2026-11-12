@@ -45,5 +45,5 @@ async fn main() {
 async fn handle_connection(socket: TcpStream, peer: SocketAddr) {
     info!(%peer, "client connected");
     drop(socket);
-    info!(%peer, "client desconected");
+    info!(%peer, "client disconected");
 }

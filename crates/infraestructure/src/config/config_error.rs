@@ -2,7 +2,7 @@ use thiserror::Error;
 
 #[derive(Debug, Error)]
 pub enum ConfigError {
-    #[error("enviroment variable required is missing: {0}")]
+    #[error("environment variable required is missing: {0}")]
     Missing(&'static str),
 
     #[error("invalid value to {name}: '{value}' ({motive})")]
@@ -20,17 +20,17 @@ mod tests {
     const AUTH_PORT: &str = "AUTH_PORT";
 
     #[test]
-    fn missing_envirioment_required() {
+    fn missing_environment_required() {
         let error = ConfigError::Missing(AUTH_PORT);
 
         assert_eq!(
             error.to_string(),
-            format!("enviroment variable required is missing: {AUTH_PORT}")
+            format!("environment variable required is missing: {AUTH_PORT}")
         )
     }
 
     #[test]
-    fn invalid_enviroment() {
+    fn invalid_environment() {
         let error = ConfigError::Invalid {
             name: AUTH_PORT,
             value: "abc".to_string(),
