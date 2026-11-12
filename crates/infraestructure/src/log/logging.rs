@@ -84,7 +84,10 @@ mod tests {
 
     #[test]
     fn build_filter_keeps_per_target_directives() {
-        assert_eq!(filter("warn,infraestructure=trace").to_string(), "infraestructure=trace,warn");
+        assert_eq!(
+            filter("warn,infraestructure=trace").to_string(),
+            "infraestructure=trace,warn"
+        );
     }
 
     #[test]
