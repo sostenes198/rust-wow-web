@@ -1,19 +1,78 @@
 {
   "version": "0.2.0",
   "configurations": [
+    // ---------- Aplicações (binários) ----------
     {
       "type": "lldb",
       "request": "launch",
-      "name": "Debug auth-server",
+      "name": "Run: auth-server",
       "cargo": { "args": ["build", "--bin", "auth-server", "--package", "auth-server"] },
       "cwd": "${workspaceFolder}"
     },
     {
       "type": "lldb",
       "request": "launch",
-      "name": "Debug unit tests (infrastructure)",
-      "cargo": { "args": ["test", "--no-run", "--package", "infrastructure"] },
+      "name": "Run: client-test",
+      "cargo": { "args": ["build", "--bin", "client-test", "--package", "client-test"] },
       "cwd": "${workspaceFolder}"
+    },
+
+    // ---------- Testes unitários (lib) ----------
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test (unit): infrastructure",
+      "cargo": { "args": ["test", "--no-run", "--lib", "--package", "infrastructure"] },
+      "cwd": "${workspaceFolder}"
+    },
+
+    // ---------- Testes de integração (pasta tests/ do crate) ----------
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test (integration): auth-server / connection",
+      "cargo": {
+        "args": ["test", "--no-run", "--package", "auth-server", "--test", "connection"]
+      },
+      "cwd": "${workspaceFolder}"
+    },
+
+    // ---------- Um teste específico, escolhido por nome ----------
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test (by name): infrastructure",
+      "cargo": { "args": ["test", "--no-run", "--lib", "--package", "infrastructure"] },
+      "args": ["${input:testName}", "--nocapture"],
+      "cwd": "${workspaceFolder}"
+    },
+    {
+      "type": "lldb",
+      "request": "launch",
+      "name": "Test (by name): auth-server / connection",
+      "cargo": {
+        "args": ["test", "--no-run", "--package", "auth-server", "--test", "connection"]
+      },
+      "args": ["${input:testName}", "--nocapture"],
+      "cwd": "${workspaceFolder}"
+    }
+  ],
+
+  "compounds": [
+    {
+      // Sobe o servidor e o cliente juntos.
+      "name": "Run: auth-server + client-test",
+      "configurations": ["Run: auth-server", "Run: client-test"],
+      "stopAll": true
+    }
+  ],
+
+  "inputs": [
+    {
+      "id": "testName",
+      "type": "promptString",
+      "description": "Nome (ou parte do nome) do teste",
+      "default": ""
     }
   ]
 }
